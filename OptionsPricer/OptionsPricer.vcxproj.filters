@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\tests">
+      <UniqueIdentifier>{cd00de6a-1755-41c4-a395-20760b43fe45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\wokrflow">
+      <UniqueIdentifier>{c6440cbd-76bf-4f13-bf42-7c0b8925605a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\common">
+      <UniqueIdentifier>{d924465b-4f78-4d8c-a6c0-83655f6c0632}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="WorkflowBuilder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pricer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OrderBook.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ConflatedQueue.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="SPSCQueue.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="INode.h">
+      <Filter>Header Files\wokrflow</Filter>
+    </ClInclude>
+    <ClInclude Include="InputMultiplexer.h">
+      <Filter>Header Files\wokrflow</Filter>
+    </ClInclude>
+    <ClInclude Include="InputNode.h">
+      <Filter>Header Files\wokrflow</Filter>
+    </ClInclude>
+    <ClInclude Include="InputResource.h">
+      <Filter>Header Files\wokrflow</Filter>
+    </ClInclude>
+    <ClInclude Include="OutputNode.h">
+      <Filter>Header Files\wokrflow</Filter>
+    </ClInclude>
+    <ClInclude Include="OutputResource.h">
+      <Filter>Header Files\wokrflow</Filter>
+    </ClInclude>
+    <ClInclude Include="Provider.h">
+      <Filter>Header Files\wokrflow</Filter>
+    </ClInclude>
+    <ClInclude Include="Publisher.h">
+      <Filter>Header Files\wokrflow</Filter>
+    </ClInclude>
+    <ClInclude Include="TaskNode.h">
+      <Filter>Header Files\wokrflow</Filter>
+    </ClInclude>
+    <ClInclude Include="WorkflowGraph.h">
+      <Filter>Header Files\wokrflow</Filter>
+    </ClInclude>
+    <ClInclude Include="SPSCTest.h">
+      <Filter>Header Files\tests</Filter>
+    </ClInclude>
+    <ClInclude Include="SPSCConflatedQueue.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="SPSCConflatedTest.h">
+      <Filter>Header Files\tests</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
