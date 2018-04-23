@@ -7,7 +7,7 @@
 
 namespace tests
 {
-    constexpr size_t N = 100;
+    constexpr size_t N = 1000000;
     constexpr size_t Q_SIZE = 10;
 
     class WrapInt

@@ -20,7 +20,7 @@ public:
     {
         while (1)
         {
-            bool available = (queue[writePos].busy == 0);    
+            bool available = (queue[writePos].rxReady == 0);    
             atomic_thread_fence(std::memory_order_acquire);
             if (available)
             {
@@ -51,7 +51,7 @@ public:
     void notifyPush()
     {
         atomic_thread_fence(std::memory_order_release);
-        queue[writePos].busy = 1;
+        queue[writePos].rxReady = 1;
 
         if (++writePos == N)
             writePos = 0;
@@ -62,7 +62,7 @@ public:
     {
         while (1)
         {
-            bool empty = (queue[readPos].busy == 0);   
+            bool empty = (queue[readPos].rxReady == 0);   
             atomic_thread_fence(std::memory_order_acquire);
             if (empty)
             {
@@ -93,7 +93,7 @@ public:
     void notifyPop()
     {
         atomic_thread_fence(std::memory_order_release);
-        queue[readPos].busy = 0;
+        queue[readPos].rxReady = 0;
 
         if (++readPos == N)
             readPos = 0;
@@ -102,7 +102,7 @@ public:
 private:  
     struct Item
     {
-        uint8_t busy = 0;
+        uint8_t rxReady = 0;
         char raw[sizeof(T)];
     };
 

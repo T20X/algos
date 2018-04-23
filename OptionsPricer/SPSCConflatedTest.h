@@ -14,52 +14,66 @@ namespace tests
 {    
     void testSPSCConflation()
     {
-        constexpr static size_t SAMPLES_N = 10000000;
+        constexpr static size_t SAMPLES_N = 1000000;
+        static int moveN = 0, moveAssingN = 0, copyN = 0, copyAssingN = 0;
 
         {
+            struct NoDefaultConstructible
+            {
+                int i;
+                NoDefaultConstructible(int i_) :i(i_) {}
+                NoDefaultConstructible(NoDefaultConstructible&& other)
+                {
+                    i = other.i;
+                    moveN++;
+                }
+                NoDefaultConstructible& operator= (NoDefaultConstructible&& other)
+                {
+                    if (this != &other)
+                    {
+                        i = other.i;
+                        moveAssingN++;
+                    }
+
+                    return *this;
+                }
+                NoDefaultConstructible(const NoDefaultConstructible& other)
+                {
+                    i = other.i;
+                    copyN++;
+                }
+                NoDefaultConstructible& operator= (const NoDefaultConstructible& other)
+                {
+                    if (this != &other)
+                    {
+                        i = other.i;
+                        copyAssingN++;
+                    }
+                    
+                    return *this;
+                }
+            };
+
             int conflatedN = 0;
             int updatesN = 0;
         
             atomic<bool> finished(false);
 
-            SPSCQueueConflated<int> q(2);
+            SPSCQueueConflated<NoDefaultConstructible> q(2);
 
             thread p([&q, &conflatedN, &finished]() {
-                /*unordered_set<SPSCQueueConflated<int>::ConflatedType> updates;
-                for (size_t i = 0; i < 10; i++)
+
+                unordered_map<uint64_t, SPSCQueueConflated<NoDefaultConstructible>::Proxy::Ptr> updates;
+                for (int i = 0; i < 10; i++)
                 {
-                    ConflatedItem<int> d1; d1.id = i;
-                    updates.emplace(d1);
-                }*/
-
-                /*ConflatedItem<int> data;
-                ConflatedNotification<int>* item = nullptr;
-
-                for (int i = 0; i < SAMPLES_N; i++)
-                {
-                    if (data.notification && 
-                        data.notification->busy)
-                    {
-                        conflatedN++;
-                        continue;
-                    }
-
-                    atomic_thread_fence(std::memory_order_release);
-                    q.getForWrite(&item);
-                    {
-                        data.notification = item;
-                        item->data = &data;
-                        item->data->data = 1;                        
-                    }
-                    q.notifyPush();
-                }*/
-
-                //ConflatedNotification<int>* item = nullptr;
-                SPSCQueueConflated<int>::ConflatedType data; data.id = 1;
+                    updates.emplace(i, new SPSCQueueConflated<NoDefaultConstructible>::Proxy(i * 10, nullptr ));
+                }
+                                
                 for (int i = 0; i < SAMPLES_N; i++)
                 {                   
-                    data.data = i;
-                    q.push(&data);
+                    SPSCQueueConflated<NoDefaultConstructible>::Proxy& item = *updates[i % 10];
+                    item.data.i = 1;
+                    q.push(item);
                 }
 
                 finished.store(true, std::memory_order_release);
@@ -69,26 +83,16 @@ namespace tests
             thread c([&q, &updatesN, &finished]() {
                 std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
 
-                SPSCQueueConflated<int>::ConflatedType* data = nullptr;
+                NoDefaultConstructible data(0);
                 while (!finished.load(std::memory_order_acquire))
                 {
-                    if (!q.pop(&data)) continue;                    
+                    if (!q.pop(data))
+                        continue;                    
+                    else
                     {
                         updatesN++;
                     }
                 }
-
-               /* ConflatedItem<int>* data = nullptr;
-                ConflatedNotification<int>* item = nullptr;
-                while (!finished.load(std::memory_order_acquire))
-                {
-                    q.getForRead(&item, false);
-                    if (!item) continue;
-                    {
-                        updatesN++;
-                    }
-                    q.notifyPop();
-                }*/
 
                 std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
                 cout << "Took ->" << (double)std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() / updatesN
@@ -98,6 +102,8 @@ namespace tests
             c.join();
             p.join();
            
+            cout << "\n moveN = " << moveN << "; moveAssingN = " << moveAssingN
+                 << "; copyN = " << copyN << "; copyAssingN = " << copyAssingN;
 
             cout << "\nConflated -> " << conflatedN
                  << "; Recived -> " << updatesN;
