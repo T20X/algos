@@ -1,0 +1,4 @@
+﻿  main.cpp
+c:\users\garkus\algos\hardware\main.cpp(8): warning C4477: 'printf' : format string '%lld' requires an argument of type '__int64', but variadic argument 1 has type 'std::numeric_limits<__int64>::_Ty (__cdecl *)(void) noexcept'
+  Hardware.vcxproj -> C:\Users\garkus\Algos\x64\Debug\Hardware.exe
+  Hardware.vcxproj -> C:\Users\garkus\Algos\x64\Debug\Hardware.pdb (Partial PDB)

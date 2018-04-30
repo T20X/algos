@@ -113,7 +113,14 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Greedy.h" />
+    <ClInclude Include="BinaryTree.h" />
+    <ClInclude Include="DynamicProgrammingLearn.h" />
+    <ClInclude Include="Greedy2.h" />
+    <ClInclude Include="List.h" />
+    <ClInclude Include="Maths.h" />
+    <ClInclude Include="Matrix.h" />
+    <ClInclude Include="SetsAddUpToN.h" />
+    <ClInclude Include="Sorting.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

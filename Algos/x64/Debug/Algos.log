@@ -1,0 +1,5 @@
+﻿  main.cpp
+c:\users\garkus\algos\algos\dynamicprogramminglearn.h(183): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\users\garkus\algos\algos\setsaddupton.h(11): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Algos.vcxproj -> C:\Users\garkus\Algos\x64\Debug\Algos.exe
+  Algos.vcxproj -> C:\Users\garkus\Algos\x64\Debug\Algos.pdb (Partial PDB)

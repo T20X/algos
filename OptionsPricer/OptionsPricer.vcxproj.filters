@@ -83,5 +83,17 @@
     <ClInclude Include="SPSCConflatedTest.h">
       <Filter>Header Files\tests</Filter>
     </ClInclude>
+    <ClInclude Include="MPSCQueue.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="Spinlock.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="SpinLockTest.h">
+      <Filter>Header Files\tests</Filter>
+    </ClInclude>
+    <ClInclude Include="MPSCQueueTest.h">
+      <Filter>Header Files\tests</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

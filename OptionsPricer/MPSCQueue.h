@@ -12,7 +12,36 @@ public:
     explicit MPSCQueue(size_t length)
         :N(length), readPos(1), writePos(0)
     {
-        queue.resize(N);        
+        queue.resize(N); 
+
+        int power = [length]() {
+            if (length == 1)
+                return 0;
+
+            int power = 0;
+            int devived = length;
+            while (devived > 1)
+            {
+                devived = devived / 2;                
+                power++;
+            }
+
+            if (devived == 1)
+                return power;
+            else
+                return -1; //not power of 2!
+        }();
+
+        if (power == -1)
+            throw std::runtime_error("lengh is not power of 2!");
+
+        power++;
+        clearMask = [power]() {
+            size_t result = 1;
+            for (int i = 0; i < power; i++)
+                result |= 1 << i;
+            return result;
+        }();
     }
 
     // only called by producer
@@ -21,6 +50,9 @@ public:
         size_t position = 0;
         while (1)
         {
+            if (writePos.load(std::memory_order_acquire) > N * 10000)
+                writePos.fetch_and(clearMask); // prevent writePos overflow!
+
             position = (++writePos % N);
             uint8_t expected = 1;
             if (queue[position].txReady->compare_exchange_strong(
@@ -79,7 +111,7 @@ public:
                     _mm_pause();
                 }
                 else
-                {
+                { 
                     *item = 0;
                     break;
                 }
@@ -115,6 +147,7 @@ private:
             std::make_unique<std::atomic<uint8_t>>(1);
     };
 
+    size_t clearMask;
     std::vector<Item> queue;
     size_t N;
 

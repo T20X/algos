@@ -9,7 +9,7 @@ namespace tests
 {
     constexpr size_t MPSC_THREADS = 10;
     constexpr size_t N_MPSC = 5000000;
-    constexpr size_t Q_MPSC_SIZE = 30;
+    constexpr size_t Q_MPSC_SIZE = 32;
 
     class WrapInt2
     {

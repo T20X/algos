@@ -118,12 +118,16 @@
     <ClInclude Include="InputMultiplexer.h" />
     <ClInclude Include="InputNode.h" />
     <ClInclude Include="InputResource.h" />
+    <ClInclude Include="MPSCQueue.h" />
+    <ClInclude Include="MPSCQueueTest.h" />
     <ClInclude Include="OrderBook.h" />
     <ClInclude Include="OutputNode.h" />
     <ClInclude Include="OutputResource.h" />
     <ClInclude Include="Pricer.h" />
     <ClInclude Include="Provider.h" />
     <ClInclude Include="Publisher.h" />
+    <ClInclude Include="Spinlock.h" />
+    <ClInclude Include="SpinLockTest.h" />
     <ClInclude Include="SPSCConflatedQueue.h" />
     <ClInclude Include="SPSCConflatedTest.h" />
     <ClInclude Include="SPSCQueue.h" />
