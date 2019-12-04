@@ -16,13 +16,14 @@ int main()
     p.go();*/
 
     tests::testSPSC();
-   /* tests::testSPSCConflation();
+   
+    tests::testSPSCConflation();
     for (int i = 0; i < 2; i++)
     {
         std::this_thread::sleep_for(1s);        
         tests::testSpinLockAtomicFlag();
         tests::testSpinLockAtomicBool();
-    }*/
+    }
 
     tests::testMPSC();
 

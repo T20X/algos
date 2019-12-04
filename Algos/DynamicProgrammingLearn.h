@@ -7,6 +7,31 @@
 
 using namespace std;
 
+/*
+Dynamic Programming (DP) bears similarities to Divide and
+Conquer (D&C)
+Both partition a problem into smaller subproblems and build
+solution of larger problems from solutions of smaller problems.
+In D&C, work top-down. Know exact smaller problems that
+need to be solved to solve larger problem.
+In D, (usually) work bottom-up. Solve all smaller size problems
+and build larger problem solutions from them.
+In DP, many large subproblems reuse solution to same smaller
+problem.
+DP often used for optimization problems
+Problems have many solutions; we want the best one
+Main idea of DP
+1 Analyze the structure of an optimal solution
+2 Recursively define the value of an optimal solution
+3 Compute the value of an optimal solution (usually bottom-up)
+
+Main idea of bottom-up DP
+Don’t wait until until subproblem is encountered.
+Sort the subproblems by size; solve smallest subproblems first
+Combine solutions of small subproblems to solve larger ones
+
+*/
+
 class RodCutting
 {
 public:
@@ -44,7 +69,7 @@ public:
         if (N == 0 || N > p.size())        
             return 0;        
 
-        int maxProfit = -1;
+        int maxProfit = 0;
         for (int i = 1; i <= N; i++)
         {        
             maxProfit = max(maxProfit, p[i - 1] + maxProfitRecursive(p, N - i));
@@ -91,21 +116,14 @@ public:
         if (p.size() < N)
             return -1;
 
-        vector<int> s(N + 1, -1);
-        s[0] = 0;
-
-        for (int i = 1; i <= N; i++)
-        {
-             for (int j = 1; j <= i; j++)
-             {
-                 int localMaxProfit = p[j - 1] + s[i - j];
-
-                 if (s[i] < localMaxProfit)
-                 {
-                      s[i] = localMaxProfit;
-                 }   
-             }
-        }
+        vector<int> s(N + 1, 0);
+        for (int i = 1; i <= N; i++)       
+            for (int j = 1; j <= i; j++)
+            {
+                int localMaxProfit = p[j - 1] + s[i - j];
+                if (s[i] < localMaxProfit)             
+                    s[i] = localMaxProfit;                 
+            }        
 
         return s[N];
     }

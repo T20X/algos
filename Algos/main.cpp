@@ -7,6 +7,12 @@
 #include "Matrix.h"
 #include "Maths.h"
 #include "SetsAddUpToN.h"
+#include "BucketSort.h"
+#include "InsertionSort.h"
+#include "BTree.h"
+#include "Heap.h"
+#include "Bellman-Ford.h"
+#include "HashMapList.h"
 
 int main()
 {
@@ -33,7 +39,14 @@ int main()
     //math::Math m;//greatestCommonDevisor
     //m.testGreatestCommonDevisor();
 
-    SetsAddUpToN s; s.test();
+    //SetsAddUpToN s;
+    //s.test();
 
+    //sorting::testInsertionSort();
+    btree::test();
+    kthSmallest();
+    bellman::test();
+    graph::testIntStrtoGraph();
+    hashmap::test1();
     getchar();
 }

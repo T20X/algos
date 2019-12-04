@@ -2,6 +2,8 @@
 
 #include <thread>
 #include <chrono>
+#include <string>
+#include <sstream>
 #include "SPSCQueue.h"
 #include "OrderBook.h"
 
@@ -29,6 +31,9 @@ namespace tests
     private:
         int v;
     };
+
+
+
 
     void producerSPSC(reference_wrapper<SPSCQueue<WrapInt>>& q)
     {

@@ -1,10 +1,10 @@
 #pragma once
 
-namespace prob1
+namespace prob3
 {
     static void test()
     {
-
+        assert(true);
     }
 }
 

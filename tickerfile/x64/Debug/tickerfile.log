@@ -1,1 +1,13 @@
-﻿
+﻿  CmdProcessor.cpp
+  CommandFactory.cpp
+c1xx : fatal error C1083: Cannot open source file: '..\..\tickerfile-master\tickerfile-master\CmdProcessor.cpp': No such file or directory
+  Commands.cpp
+c1xx : fatal error C1083: Cannot open source file: '..\..\tickerfile-master\tickerfile-master\CommandFactory.cpp': No such file or directory
+  main.cpp
+c1xx : fatal error C1083: Cannot open source file: '..\..\tickerfile-master\tickerfile-master\Commands.cpp': No such file or directory
+  TickerplantPrintOptimize.cpp
+c1xx : fatal error C1083: Cannot open source file: '..\..\tickerfile-master\tickerfile-master\main.cpp': No such file or directory
+  TickerplantProductOptimize.cpp
+c1xx : fatal error C1083: Cannot open source file: '..\..\tickerfile-master\tickerfile-master\TickerplantPrintOptimize.cpp': No such file or directory
+  Generating Code...
+c1xx : fatal error C1083: Cannot open source file: '..\..\tickerfile-master\tickerfile-master\TickerplantProductOptimize.cpp': No such file or directory

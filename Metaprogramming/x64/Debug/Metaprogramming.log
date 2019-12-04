@@ -1,0 +1,96 @@
+﻿  main.cpp
+C:\Users\mainex\Algos\Metaprogramming\Basics.h(311,42): warning C4101: 't': unreferenced local variable
+C:\Users\mainex\Algos\Metaprogramming\enable_if.h(88,13): warning C4101: 'o': unreferenced local variable
+C:\Users\mainex\Algos\Metaprogramming\specialization.h(66,21): warning C4101: 'l1': unreferenced local variable
+C:\Users\mainex\Algos\Metaprogramming\specialization.h(63,20): warning C4101: 'a11': unreferenced local variable
+C:\Users\mainex\Algos\Metaprogramming\specialization.h(67,24): warning C4101: 'l2': unreferenced local variable
+C:\Users\mainex\Algos\Metaprogramming\specialization.h(62,30): warning C4101: 'a13': unreferenced local variable
+C:\Users\mainex\Algos\Metaprogramming\specialization.h(64,41): warning C4101: 'a12': unreferenced local variable
+C:\Users\mainex\Algos\Metaprogramming\Basics.h(84,21): warning C4244: 'return': conversion from '__int64' to 'int', possible loss of data
+C:\Users\mainex\Algos\Metaprogramming\Basics.h(78): message : see reference to function template instantiation 'int basics::_aux_distance<ItType>(ItType,ItType,std::random_access_iterator_tag)' being compiled
+C:\Users\mainex\Algos\Metaprogramming\Basics.h(78): message :         with
+C:\Users\mainex\Algos\Metaprogramming\Basics.h(78): message :         [
+C:\Users\mainex\Algos\Metaprogramming\Basics.h(78): message :             ItType=std::_Vector_iterator<std::_Vector_val<std::_Simple_types<int>>>
+C:\Users\mainex\Algos\Metaprogramming\Basics.h(78): message :         ]
+C:\Users\mainex\Algos\Metaprogramming\Basics.h(302): message : see reference to function template instantiation 'int basics::mine_distance<std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>,std::random_access_iterator_tag>(ItType,ItType)' being compiled
+C:\Users\mainex\Algos\Metaprogramming\Basics.h(302): message :         with
+C:\Users\mainex\Algos\Metaprogramming\Basics.h(302): message :         [
+C:\Users\mainex\Algos\Metaprogramming\Basics.h(302): message :             _Ty=int,
+C:\Users\mainex\Algos\Metaprogramming\Basics.h(302): message :             ItType=std::_Vector_iterator<std::_Vector_val<std::_Simple_types<int>>>
+C:\Users\mainex\Algos\Metaprogramming\Basics.h(302): message :         ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(155,47): warning C4244: 'initializing': conversion from '_Ty' to '_Ty', possible loss of data
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(155,47): warning C4244:         with
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(155,47): warning C4244:         [
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(155,47): warning C4244:             _Ty=double
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(155,47): warning C4244:         ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(155,47): warning C4244:         and
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(155,47): warning C4244:         [
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(155,47): warning C4244:             _Ty=float
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(155,47): warning C4244:         ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(241): message : see reference to function template instantiation 'std::_Tuple_val<_This>::_Tuple_val<_Ty>(_Other &&)' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(241): message :         with
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(241): message :         [
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(241): message :             _This=float,
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(241): message :             _Ty=double,
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(241): message :             _Other=double
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(241): message :         ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(242): message : see reference to function template instantiation 'std::_Tuple_val<_This>::_Tuple_val<_Ty>(_Other &&)' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(242): message :         with
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(242): message :         [
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(242): message :             _This=float,
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(242): message :             _Ty=double,
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(242): message :             _Other=double
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(242): message :         ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(241): message : see reference to function template instantiation 'std::tuple<float>::tuple<std::_Exact_args_t,_Ty,,0>(_Tag,_This2 &&)' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(241): message :         with
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(241): message :         [
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(241): message :             _Ty=double,
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(241): message :             _Tag=std::_Exact_args_t,
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(241): message :             _This2=double
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(241): message :         ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(241): message : see reference to function template instantiation 'std::tuple<float>::tuple<std::_Exact_args_t,_Ty,,0>(_Tag,_This2 &&)' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(241): message :         with
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(241): message :         [
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(241): message :             _Ty=double,
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(241): message :             _Tag=std::_Exact_args_t,
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(241): message :             _This2=double
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(241): message :         ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(241): message : see reference to function template instantiation 'std::tuple<std::string,float>::tuple<std::_Exact_args_t,const char(&)[5],_Ty,0>(_Tag,_This2,_Ty &&)' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(241): message :         with
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(241): message :         [
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(241): message :             _Ty=double,
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(241): message :             _Tag=std::_Exact_args_t,
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(241): message :             _This2=const char (&)[5]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(241): message :         ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(241): message : see reference to function template instantiation 'std::tuple<std::string,float>::tuple<std::_Exact_args_t,const char(&)[5],_Ty,0>(_Tag,_This2,_Ty &&)' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(241): message :         with
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(241): message :         [
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(241): message :             _Ty=double,
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(241): message :             _Tag=std::_Exact_args_t,
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(241): message :             _This2=const char (&)[5]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(241): message :         ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(310): message : see reference to function template instantiation 'std::tuple<int,std::string,float>::tuple<std::_Exact_args_t,_Ty,const char(&)[5],double,0>(_Tag,_This2 &&,const char (&)[5],double &&)' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(310): message :         with
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(310): message :         [
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(310): message :             _Ty=int,
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(310): message :             _Tag=std::_Exact_args_t,
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(310): message :             _This2=int
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(310): message :         ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(310): message : see reference to function template instantiation 'std::tuple<int,std::string,float>::tuple<std::_Exact_args_t,_Ty,const char(&)[5],double,0>(_Tag,_This2 &&,const char (&)[5],double &&)' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(310): message :         with
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(310): message :         [
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(310): message :             _Ty=int,
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(310): message :             _Tag=std::_Exact_args_t,
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(310): message :             _This2=int
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\tuple(310): message :         ]
+C:\Users\mainex\Algos\Metaprogramming\tuples.h(40): message : see reference to function template instantiation 'std::tuple<int,std::string,float>::tuple<int,const char(&)[5],double,0>(_This2 &&,const char (&)[5],double &&) noexcept(false)' being compiled
+C:\Users\mainex\Algos\Metaprogramming\tuples.h(40): message :         with
+C:\Users\mainex\Algos\Metaprogramming\tuples.h(40): message :         [
+C:\Users\mainex\Algos\Metaprogramming\tuples.h(40): message :             _This2=int
+C:\Users\mainex\Algos\Metaprogramming\tuples.h(40): message :         ]
+C:\Users\mainex\Algos\Metaprogramming\tuples.h(40): message : see reference to function template instantiation 'std::tuple<int,std::string,float>::tuple<int,const char(&)[5],double,0>(_This2 &&,const char (&)[5],double &&) noexcept(false)' being compiled
+C:\Users\mainex\Algos\Metaprogramming\tuples.h(40): message :         with
+C:\Users\mainex\Algos\Metaprogramming\tuples.h(40): message :         [
+C:\Users\mainex\Algos\Metaprogramming\tuples.h(40): message :             _This2=int
+C:\Users\mainex\Algos\Metaprogramming\tuples.h(40): message :         ]
+  Metaprogramming.vcxproj -> C:\Users\mainex\Algos\x64\Debug\Metaprogramming.exe

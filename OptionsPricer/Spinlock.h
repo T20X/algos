@@ -1,6 +1,8 @@
 #pragma once
 
+//#include <Windows.h>
 #include <atomic>
+#include <intrin.h>
 
 class ScopedSpinlock2
 {
@@ -21,8 +23,8 @@ public:
         bool expected = false;
         while (!guard.compare_exchange_weak(expected, true, std::memory_order_acq_rel))
         {   
-             expected = false;
             _mm_pause();
+             expected = false;             
         }
 
         //got it!

@@ -1,0 +1,4 @@
+﻿  main.cpp
+C:\Users\mainex\Algos\Cpp\sharedpointer.h(468,16): warning C4101: 'd1': unreferenced local variable
+C:\Users\mainex\Algos\common\ConflatedQueue.h(210,39): warning C4101: 'e': unreferenced local variable
+  Cpp.vcxproj -> C:\Users\mainex\Algos\x64\Debug\Cpp.exe

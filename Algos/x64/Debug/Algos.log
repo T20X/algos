@@ -1,5 +1,72 @@
 ﻿  main.cpp
-c:\users\garkus\algos\algos\dynamicprogramminglearn.h(183): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-c:\users\garkus\algos\algos\setsaddupton.h(11): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  Algos.vcxproj -> C:\Users\garkus\Algos\x64\Debug\Algos.exe
-  Algos.vcxproj -> C:\Users\garkus\Algos\x64\Debug\Algos.pdb (Partial PDB)
+C:\Users\mainex\Algos\Algos\DynamicProgrammingLearn.h(201,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\mainex\Algos\Algos\SetsAddUpToN.h(11,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\mainex\Algos\common\Graph.h(98,30): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\mainex\Algos\common\Graph.h(103,53): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\mainex\Algos\common\Graph.h(105,38): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\mainex\Algos\common\Graph.h(134,32): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\mainex\Algos\common\Graph.h(139,53): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\mainex\Algos\common\Graph.h(153,57): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\mainex\Algos\Algos\HashMapList.h(106,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\mainex\Algos\Algos\HashMapList.h(105): message : while compiling class template member function 'bool hashmap::HashMapList1<int,int,std::hash<int>,std::equal_to<_Kty>>::erase(const K &)'
+C:\Users\mainex\Algos\Algos\HashMapList.h(105): message :         with
+C:\Users\mainex\Algos\Algos\HashMapList.h(105): message :         [
+C:\Users\mainex\Algos\Algos\HashMapList.h(105): message :             _Kty=int,
+C:\Users\mainex\Algos\Algos\HashMapList.h(105): message :             K=int
+C:\Users\mainex\Algos\Algos\HashMapList.h(105): message :         ]
+C:\Users\mainex\Algos\Algos\HashMapList.h(290): message : see reference to function template instantiation 'bool hashmap::HashMapList1<int,int,std::hash<int>,std::equal_to<_Kty>>::erase(const K &)' being compiled
+C:\Users\mainex\Algos\Algos\HashMapList.h(290): message :         with
+C:\Users\mainex\Algos\Algos\HashMapList.h(290): message :         [
+C:\Users\mainex\Algos\Algos\HashMapList.h(290): message :             _Kty=int,
+C:\Users\mainex\Algos\Algos\HashMapList.h(290): message :             K=int
+C:\Users\mainex\Algos\Algos\HashMapList.h(290): message :         ]
+C:\Users\mainex\Algos\Algos\HashMapList.h(273): message : see reference to class template instantiation 'hashmap::HashMapList1<int,int,std::hash<int>,std::equal_to<_Kty>>' being compiled
+C:\Users\mainex\Algos\Algos\HashMapList.h(273): message :         with
+C:\Users\mainex\Algos\Algos\HashMapList.h(273): message :         [
+C:\Users\mainex\Algos\Algos\HashMapList.h(273): message :             _Kty=int
+C:\Users\mainex\Algos\Algos\HashMapList.h(273): message :         ]
+C:\Users\mainex\Algos\common\Graph.h(89): message : see reference to class template instantiation 'graph::Graph<int,std::hash<int>,int>' being compiled
+C:\Users\mainex\Algos\Algos\HashMapList.h(89,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\mainex\Algos\Algos\HashMapList.h(88): message : while compiling class template member function 'bool hashmap::HashMapList1<int,int,std::hash<int>,std::equal_to<_Kty>>::contains(const K &)'
+C:\Users\mainex\Algos\Algos\HashMapList.h(88): message :         with
+C:\Users\mainex\Algos\Algos\HashMapList.h(88): message :         [
+C:\Users\mainex\Algos\Algos\HashMapList.h(88): message :             _Kty=int,
+C:\Users\mainex\Algos\Algos\HashMapList.h(88): message :             K=int
+C:\Users\mainex\Algos\Algos\HashMapList.h(88): message :         ]
+C:\Users\mainex\Algos\Algos\HashMapList.h(285): message : see reference to function template instantiation 'bool hashmap::HashMapList1<int,int,std::hash<int>,std::equal_to<_Kty>>::contains(const K &)' being compiled
+C:\Users\mainex\Algos\Algos\HashMapList.h(285): message :         with
+C:\Users\mainex\Algos\Algos\HashMapList.h(285): message :         [
+C:\Users\mainex\Algos\Algos\HashMapList.h(285): message :             _Kty=int,
+C:\Users\mainex\Algos\Algos\HashMapList.h(285): message :             K=int
+C:\Users\mainex\Algos\Algos\HashMapList.h(285): message :         ]
+C:\Users\mainex\Algos\Algos\HashMapList.h(70,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\mainex\Algos\Algos\HashMapList.h(69): message : while compiling class template member function 'V hashmap::HashMapList1<int,V,std::hash<int>,std::equal_to<_Kty>>::find(const K &)'
+C:\Users\mainex\Algos\Algos\HashMapList.h(69): message :         with
+C:\Users\mainex\Algos\Algos\HashMapList.h(69): message :         [
+C:\Users\mainex\Algos\Algos\HashMapList.h(69): message :             V=int,
+C:\Users\mainex\Algos\Algos\HashMapList.h(69): message :             _Kty=int,
+C:\Users\mainex\Algos\Algos\HashMapList.h(69): message :             K=int
+C:\Users\mainex\Algos\Algos\HashMapList.h(69): message :         ]
+C:\Users\mainex\Algos\Algos\HashMapList.h(280): message : see reference to function template instantiation 'V hashmap::HashMapList1<int,V,std::hash<int>,std::equal_to<_Kty>>::find(const K &)' being compiled
+C:\Users\mainex\Algos\Algos\HashMapList.h(280): message :         with
+C:\Users\mainex\Algos\Algos\HashMapList.h(280): message :         [
+C:\Users\mainex\Algos\Algos\HashMapList.h(280): message :             V=int,
+C:\Users\mainex\Algos\Algos\HashMapList.h(280): message :             _Kty=int,
+C:\Users\mainex\Algos\Algos\HashMapList.h(280): message :             K=int
+C:\Users\mainex\Algos\Algos\HashMapList.h(280): message :         ]
+C:\Users\mainex\Algos\Algos\HashMapList.h(39,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\mainex\Algos\Algos\HashMapList.h(38): message : while compiling class template member function 'bool hashmap::HashMapList1<int,int,std::hash<int>,std::equal_to<_Kty>>::insert(const K &,const V &)'
+C:\Users\mainex\Algos\Algos\HashMapList.h(38): message :         with
+C:\Users\mainex\Algos\Algos\HashMapList.h(38): message :         [
+C:\Users\mainex\Algos\Algos\HashMapList.h(38): message :             _Kty=int,
+C:\Users\mainex\Algos\Algos\HashMapList.h(38): message :             K=int,
+C:\Users\mainex\Algos\Algos\HashMapList.h(38): message :             V=int
+C:\Users\mainex\Algos\Algos\HashMapList.h(38): message :         ]
+C:\Users\mainex\Algos\Algos\HashMapList.h(274): message : see reference to function template instantiation 'bool hashmap::HashMapList1<int,int,std::hash<int>,std::equal_to<_Kty>>::insert(const K &,const V &)' being compiled
+C:\Users\mainex\Algos\Algos\HashMapList.h(274): message :         with
+C:\Users\mainex\Algos\Algos\HashMapList.h(274): message :         [
+C:\Users\mainex\Algos\Algos\HashMapList.h(274): message :             _Kty=int,
+C:\Users\mainex\Algos\Algos\HashMapList.h(274): message :             K=int,
+C:\Users\mainex\Algos\Algos\HashMapList.h(274): message :             V=int
+C:\Users\mainex\Algos\Algos\HashMapList.h(274): message :         ]
+  Algos.vcxproj -> C:\Users\mainex\Algos\x64\Debug\Algos.exe
