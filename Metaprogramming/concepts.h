@@ -131,7 +131,7 @@ namespace concepts
 
     static void test2()
     {
-        static_assert(std::is_literal_type<decltype(isInteger2<int>())>::value);
+        //static_assert(std::is_literal_type<decltype(isInteger2<int>())>::value);
         constexpr int v = _func12(isInteger2<int>());
         int ar[v];
         ar[2] = 11;

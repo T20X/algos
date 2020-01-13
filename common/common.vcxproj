@@ -124,6 +124,7 @@
     <ClInclude Include="config.h" />
     <ClInclude Include="FIFOQueue.h" />
     <ClInclude Include="Graph.h" />
+    <ClInclude Include="LatencyMonitor.h" />
     <ClInclude Include="SPSCQueue.h" />
     <ClInclude Include="SPSCTest.h" />
   </ItemGroup>

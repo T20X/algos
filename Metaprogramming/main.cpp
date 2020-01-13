@@ -10,6 +10,9 @@ using namespace std;
 #include "template_classes.h"
 #include "ClassExplorer.h"
 #include "concepts.h"
+#include "functional.h"
+#include "typelist.h"
+#include "strategy.h"
 
 int main()
 {
@@ -20,6 +23,9 @@ int main()
     templates::test();
     explorer::quickTest();
     concepts::test();
+    typelist::test();
+    strategy::test();
+    //func::FilterByName();
     getchar();
     return 0;
 }

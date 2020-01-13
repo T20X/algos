@@ -39,6 +39,9 @@
     <ClInclude Include="SPSCTest.h">
       <Filter>Header Files\test</Filter>
     </ClInclude>
+    <ClInclude Include="LatencyMonitor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

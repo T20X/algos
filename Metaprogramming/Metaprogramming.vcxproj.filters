@@ -36,6 +36,15 @@
     <ClInclude Include="concepts.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="functional.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="typelist.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="strategy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

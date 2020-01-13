@@ -1,7 +1,1 @@
-﻿  main.cpp
-C:\Users\mainex\Algos\OptionsPricer\MPSCQueue.h(22,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\mainex\Algos\OptionsPricer\MPSCQueue.h(12): message : while compiling class template member function 'MPSCQueue<OrderBook>::MPSCQueue(size_t)'
-C:\Users\mainex\Algos\OptionsPricer\MPSCQueueTest.h(87): message : see reference to function template instantiation 'MPSCQueue<OrderBook>::MPSCQueue(size_t)' being compiled
-C:\Users\mainex\Algos\OptionsPricer\MPSCQueueTest.h(87): message : see reference to class template instantiation 'MPSCQueue<OrderBook>' being compiled
-C:\Users\mainex\Algos\OptionsPricer\MPSCQueue.h(42,1): warning C4334: '<<': result of 32-bit shift implicitly converted to 64 bits (was 64-bit shift intended?)
-  OptionsPricer.vcxproj -> C:\Users\mainex\Algos\x64\Debug\OptionsPricer.exe
+﻿

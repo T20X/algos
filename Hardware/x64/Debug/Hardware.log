@@ -1,3 +1,1 @@
-﻿  main.cpp
-C:\Users\mainex\Algos\Hardware\main.cpp(8,12): warning C4477: 'printf' : format string '%lld' requires an argument of type '__int64', but variadic argument 1 has type '__int64 (__cdecl *)(void) noexcept'
-  Hardware.vcxproj -> C:\Users\mainex\Algos\x64\Debug\Hardware.exe
+﻿
