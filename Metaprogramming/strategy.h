@@ -61,7 +61,10 @@ namespace strategy
         return find_idx_if(p, t, fn_value<std::is_same>);
     }
 
-
+    template <class... T, class F>
+    void apply(type_pack<T...>, F f) {
+        int a[] = {(f(just_type<T>{}), 0)...};
+    }
 
     template <class M>
     struct Action
@@ -96,7 +99,7 @@ namespace strategy
     {
     };
 
-    using events = type_pack<OrderAck>;
+    using events = type_pack<OrderAck, OrderRej>;
     constexpr size_t _N_EVENTS_ = type_pack_size(events());
 
     struct EventHandle {
@@ -110,7 +113,21 @@ namespace strategy
         virtual void process(const E& e) = 0;      
     };
 
-    template <class E, class A, class D>
+    void handle(const OrderAck& e,
+        typename ActionOrder<class Mediator>& a)
+    {
+        std::cout << "\n handled OrderAck event for ActionOrder";
+        a.doIt();
+    }
+
+    void handle(const OrderRej& e,
+        typename ActionOrder<class Mediator>& a)
+    {
+        std::cout << "\n handled OrderRej event for ActionOrder";
+        //a.doIt();
+    }
+
+    template <class E, class A>
     struct EventActionHandle : BaseHandle<E>
     {
         using Event = E;
@@ -122,12 +139,11 @@ namespace strategy
 
         void process(const E& e) override
         {
-            D& derived = static_cast<D&>(*this);
-            derived.handle(e, getAction());
+            handle(e, getAction());
         }
     };
 
-    template <class E, class A>
+   /* template <class E, class A>
     struct DoHandle : EventActionHandle<E, A, DoHandle<E, A>> {};
 
     template <>
@@ -144,7 +160,7 @@ namespace strategy
             std::cout << "\n handled OrderAck event for ActionOrder";
             a.doIt();
         }
-    };
+    };*/
     
     struct BaseExpectation {
         virtual ~BaseExpectation() = 0;
@@ -153,11 +169,18 @@ namespace strategy
     inline BaseExpectation::~BaseExpectation() {}
 
     template <class A, class... E>
-    struct Expectation : public BaseExpectation, A, DoHandle<E, A>...
+    struct Expectation : public BaseExpectation, A, EventActionHandle<E, A>...
     {
         Expectation(A&& a):A(std::move(a)), 
-            DoHandle<E, A>(this)...
-        {}
+            EventActionHandle<E, A>(this)...
+        {
+        }
+
+        template <class F>
+        void for_each_event(F f) {
+            //auto seq = std::make_index_sequence<sizeof...(E)>;
+            apply(type_pack<EventActionHandle<E, A>::Event...>{}, f);
+        }
     };
 
     struct EventTable
@@ -202,8 +225,11 @@ namespace strategy
             cout << "\n M::do()";
         }
 
-        template<class E,class A>
-        using handle_t = DoHandle<E, A>;
+        template <class E, class Ptr>
+        void expect(just_type<E> e, Ptr p) {
+            t_._table[find_same_idx(events{}, e)].emplace_back(
+                std::weak_ptr<BaseHandle<E>>(p));
+        }
 
         void work()
         {
@@ -214,7 +240,7 @@ namespace strategy
                 std::list< std::shared_ptr<BaseExpectation>> exps;
 
                 {
-                    auto ptr = std::make_shared<Expectation<ActionOrder<Mediator>, OrderAck>>(std::move(a));
+                    auto ptr = std::make_shared<Expectation<ActionOrder<Mediator>, OrderAck, OrderRej>>(std::move(a));
                     exps.emplace_back(ptr);
                     ptr->m().doIt();
                     ptr->m().doIt();
@@ -225,17 +251,25 @@ namespace strategy
                     ptr->m().doIt();
                     ptr->m().doIt();
 
-                    t_._table[find_same_idx(events{}, just_type<OrderAck>{})].emplace_back(
-                        std::move(std::weak_ptr<EventHandle>(ptr))
-                    );
+                    //t_._table.for_ea
+                    ptr->for_each_event([&p=ptr, this](auto jt) {
+                        t_._table[find_same_idx(events{}, jt)].emplace_back(
+                            std::weak_ptr<BaseHandle<decltype(jt)::type>>(p));
+                        });
+                    //expect(just_type<OrderAck>{}, ptr);
+                    //expect(just_type<OrderRej>{}, ptr);
+                   // t_._table[find_same_idx(events{}, just_type<OrderAck>{})].emplace_back(std::weak_ptr<BaseHandle<OrderAck>>(ptr));
+                    //t_._table[find_same_idx(events{}, just_type<OrderRej>{})].emplace_back(std::weak_ptr<BaseHandle<OrderRej>>(ptr));
+                    
                     process(OrderAck());
                     process(OrderAck());
                     process(OrderAck());
                     process(OrderAck());
+                    process(OrderRej());
                 }
                 process(OrderAck());
             }
-            process(OrderAck());
+            process(OrderRej());
 
         }
     };
