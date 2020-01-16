@@ -4,6 +4,7 @@
 #include <memory>
 #include <list>
 #include <array>
+#include <functional>
 
 namespace strategy
 {
@@ -62,8 +63,8 @@ namespace strategy
     }
 
     template <class... T, class F>
-    void apply(type_pack<T...>, F f) {
-        int a[] = {(f(just_type<T>{}), 0)...};
+    void apply(type_pack<T...>, F&& f) {
+        int a[] = {(std::forward<F>(f)(just_type<T>{}), 0)...};
     }
 
     template <class M>
@@ -91,11 +92,15 @@ namespace strategy
     {
     };
 
-    struct OrderAck : Event
+    struct OrderEvent : Event
     {
     };
 
-    struct OrderRej : Event
+    struct OrderAck : OrderEvent
+    {
+    };
+
+    struct OrderRej : OrderEvent
     {
     };
 
@@ -127,6 +132,11 @@ namespace strategy
         //a.doIt();
     }
 
+
+    template <class A, class E>
+    using Processor = std::function<void>(const E & event, A & action);
+
+
     template <class E, class A>
     struct EventActionHandle : BaseHandle<E>
     {
@@ -134,12 +144,15 @@ namespace strategy
         using Action = A;
 
         Action* a_;
-        EventActionHandle(Action* a) :a_(a) {}
+        Processor<A, E> p_;
+        template <class S>
+        EventActionHandle(Action* a, Processor<A,E>&& p)
+          :a_(a),p_(std::move(p)) {}
         Action& getAction() { return *a_; }
 
         void process(const E& e) override
         {
-            handle(e, getAction());
+            p_(e, getAction());
         }
     };
 
@@ -168,11 +181,13 @@ namespace strategy
 
     inline BaseExpectation::~BaseExpectation() {}
 
+
     template <class A, class... E>
     struct Expectation : public BaseExpectation, A, EventActionHandle<E, A>...
     {
-        Expectation(A&& a):A(std::move(a)), 
-            EventActionHandle<E, A>(this)...
+        //template <class S>
+        Expectation(A&& a, Processor<A,E>&&... p)
+            :A(std::move(a)), EventActionHandle<E, A>(this, std::move(p))...
         {
         }
 
@@ -211,6 +226,49 @@ namespace strategy
                   _N_EVENTS_> _table;
     };
 
+    struct State
+    {
+        using type = uint8_t;
+        static constexpr type EMPTY = 0;
+        static constexpr type ACCEPTED = 2;
+        static constexpr type SUBMITTED = 4;
+        static constexpr type REJECTED = 8;
+    };
+
+    template <class E,class A, typename = std::enable_if_t<std::is_base_of<OrderEvent,E>::value>>
+    void mapThis(E&&, A&&,int)
+    {
+        auto r = mapS(just_type<E>{});
+        std::cout << "\n mapthis=" << r;
+    }
+
+    template <class E, class A>
+    void mapThis(E&&, A&&, ...)
+    {
+        static_assert(typename E, "sadf");
+        //auto r = mapS(just_type<E>{});
+        //std::cout << "\n mapthis=" << r;
+    }
+
+    /*template <class E, class A>
+    void mapThis(E&&,A&&)
+    {
+    }*/
+
+    template <class E>
+    auto mapS(just_type<E>) 
+    {
+        //assert(0);
+        //return State::EMPTY;
+        static_assert(typename E, "sadf");
+    }
+
+    auto mapS(just_type<OrderAck>)
+    {
+        return State::ACCEPTED;
+    }
+
+
     struct Mediator
     {
         EventTable t_;
@@ -233,14 +291,20 @@ namespace strategy
 
         void work()
         {
+            //mapS(just_type<OrderAck>{});
+            //mapS(just_type<OrderRej>{});
             ActionOrder<Mediator> a(*this);
+            mapThis(OrderAck{}, a,0);
+            //mapThis(Event{}, a);
             a.doIt();
 
             {
                 std::list< std::shared_ptr<BaseExpectation>> exps;
 
                 {
-                    auto ptr = std::make_shared<Expectation<ActionOrder<Mediator>, OrderAck, OrderRej>>(std::move(a));
+                    auto ptr = std::make_shared<Expectation<ActionOrder<Mediator>, OrderAck, OrderRej>>(
+                        std::move(a), [&](const OrderAck& e, ActionOrder<Mediator>&) -> void { std::cout << "\n OrderAck processed"; },
+                                      [&](const OrderRej& e, ActionOrder<Mediator>&) -> void { std::cout << "\n OrderRej processed"; });
                     exps.emplace_back(ptr);
                     ptr->m().doIt();
                     ptr->m().doIt();
@@ -314,3 +378,4 @@ template <class E>
 constexpr size_t eventIndexFor(just_type<E>) {
     auto indices = static_cast<IndexedType<event_indices;
 }*/
+
