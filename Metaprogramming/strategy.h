@@ -134,7 +134,7 @@ namespace strategy
 
 
     template <class A, class E>
-    using Processor = std::function<void>(const E & event, A & action);
+    using Processor = std::function<void(const E & event, A & action)>;
 
 
     template <class E, class A>
@@ -144,8 +144,7 @@ namespace strategy
         using Action = A;
 
         Action* a_;
-        Processor<A, E> p_;
-        template <class S>
+        Processor<A, E> p_;       
         EventActionHandle(Action* a, Processor<A,E>&& p)
           :a_(a),p_(std::move(p)) {}
         Action& getAction() { return *a_; }
