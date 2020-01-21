@@ -73,6 +73,36 @@ namespace basics
         cout << "\n";
     }
 
+    struct Out
+    {
+        template <typename... Args>
+        static auto perfect_capture(Args&&... args) {
+            return std::tuple<Args...>(std::forward<Args>(args)...);
+        }
+
+        template <class... Args, size_t... I>
+        void printTuple(std::ostream& out, const std::tuple<Args...>& data, std::index_sequence<I...>) {
+            out << "\n";
+             int a[] = { 0, ((void)(out << "," << get<I>(data)), 0)... }; (void)a;
+            out << "\n";
+        }
+
+        template <class... T>
+        Out(T&&... args) {             
+            _print = [this,data=perfect_capture(std::forward<T>(args)...)](auto& out) {
+                printTuple(out, data, std::make_index_sequence<sizeof...(args)>{});                                               
+            };
+        }
+    
+        friend std::ostream& operator<<(std::ostream&, Out&);
+        std::function<void(std::ostream&)> _print;
+    };
+
+    std::ostream& operator<<(std::ostream& out, Out& other)    {
+        other._print(out);
+        return out;
+    }
+
     template <typename C> using ContainerType = decltype(*begin(declval<C>()));
     template <typename C, typename = void_t<>> struct is_container : std::false_type {};
     template <typename C> struct is_container<C,

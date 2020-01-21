@@ -5,6 +5,7 @@
 #include <list>
 #include <array>
 #include <functional>
+#include "../common/basics.h"
 
 namespace strategy
 {
@@ -78,15 +79,7 @@ namespace strategy
         }
     };
 
-    template <class M>
-    struct ActionOrder : public Action<M>
-    {
-        using Action<M>::Action;
-        void doIt()
-        {
-            this->m().doIt();
-        }
-    };
+
 
     struct Event
     {
@@ -98,10 +91,48 @@ namespace strategy
 
     struct OrderAck : OrderEvent
     {
+        
     };
 
     struct OrderRej : OrderEvent
     {
+    };
+
+    template <class M>
+    struct ActionOrder : public Action<M>
+    {
+        using Action<M>::Action;        
+        void doIt()
+        {
+            this->m().doIt();
+        }
+
+        void onEvent(const OrderAck& e)
+        {
+            std::cout << "\n ActionOrder::onEvent";
+        }
+
+        void onEvent(const OrderRej& e)
+        {
+            std::cout << "\n ActionOrder::onEvent(OrderRej)";
+        }
+    };
+
+    template <class M>
+    struct ActionOrder2 : public ActionOrder<M>
+    {
+        using ActionOrder<M>::ActionOrder;
+        using ActionOrder<M>::onEvent;
+
+        void doIt()
+        {
+            this->m().doIt();
+        }
+
+        void onEvent(const OrderAck& e)
+        {
+            std::cout << "\n ActionOrder2::onEvent";
+        }
     };
 
     using events = type_pack<OrderAck, OrderRej>;
@@ -151,6 +182,7 @@ namespace strategy
 
         void process(const E& e) override
         {
+            getAction().onEvent(e);
             p_(e, getAction());
         }
     };
@@ -292,7 +324,7 @@ namespace strategy
         {
             //mapS(just_type<OrderAck>{});
             //mapS(just_type<OrderRej>{});
-            ActionOrder<Mediator> a(*this);
+            ActionOrder2<Mediator> a(*this);
             mapThis(OrderAck{}, a,0);
             //mapThis(Event{}, a);
             a.doIt();
@@ -301,9 +333,9 @@ namespace strategy
                 std::list< std::shared_ptr<BaseExpectation>> exps;
 
                 {
-                    auto ptr = std::make_shared<Expectation<ActionOrder<Mediator>, OrderAck, OrderRej>>(
-                        std::move(a), [&](const OrderAck& e, ActionOrder<Mediator>&) -> void { std::cout << "\n OrderAck processed"; },
-                                      [&](const OrderRej& e, ActionOrder<Mediator>&) -> void { std::cout << "\n OrderRej processed"; });
+                    auto ptr = std::make_shared<Expectation<ActionOrder2<Mediator>, OrderAck, OrderRej>>(
+                        std::move(a), [&](const OrderAck& e, ActionOrder2<Mediator>&) -> void { std::cout << "\n OrderAck processed"; },
+                                      [&](const OrderRej& e, ActionOrder2<Mediator>&) -> void { std::cout << "\n OrderRej processed"; });
                     exps.emplace_back(ptr);
                     ptr->m().doIt();
                     ptr->m().doIt();
@@ -341,6 +373,9 @@ namespace strategy
     {
         Mediator m;
         m.work();
+
+        basics::Out o(1, 2, list{ 1,1 });
+        std::cout << o;
 
     }
 }
