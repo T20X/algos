@@ -15,7 +15,7 @@ namespace prob1
 {
     struct Input
     {
-        std::uint32_t num;
+        unsigned long num;
     };
 
     class Solution
@@ -127,25 +127,25 @@ namespace prob1
 
             {
                 Solution s;
-                std::vector<std::uint32_t> v{ 1, 3, 6, 2, 7, 8 };
+                std::vector<unsigned long> v{ 1, 3, 6, 2, 7, 8 };
                 assert(test::processAndCollectLast(s, v) == test::median(v));
             }
 
             {
                 Solution s;
-                std::vector<std::uint32_t> v{ 1, 3, 6, 2, 7, 8, 9 };
+                std::vector<unsigned long> v{ 1, 3, 6, 2, 7, 8, 9 };
                 assert(test::processAndCollectLast(s, v) == test::median(v));
             }
 
             std::random_device rd;
             std::mt19937 gen(rd());
-            std::uniform_int_distribution<std::uint32_t> d(
-                0, std::numeric_limits<std::uint32_t>::max());
+            std::uniform_int_distribution<unsigned long> d(
+                0, std::numeric_limits<unsigned long>::max());
 
             for (size_t i = 0; i < N; ++i)
             {
                 Solution s;
-                std::vector<std::uint32_t> v;
+                std::vector<unsigned long> v;
                 v.reserve(SequenceLen);
                 for (size_t i = 0; i < SequenceLen; ++i)
                     v.emplace_back(d(gen));

@@ -51,7 +51,7 @@ namespace prob2
                 sort(std::begin(record.second), 
                      std::end(record.second));
 
-                int l = 0, r = 0;                
+                size_t l = 0, r = 0;                
                 while (r < record.second.size())
                 {
                     auto diff = record.second[r] -

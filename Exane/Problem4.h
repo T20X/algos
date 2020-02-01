@@ -8,12 +8,12 @@ namespace prob4
     {
         struct Item
         {
-            std::uint32_t price;
-            std::uint32_t weight;
+            unsigned long price;
+            unsigned long weight;
         };
 
         std::vector<Item> _items;
-        std::vector<std::uint32_t> _family;
+        std::vector<unsigned long> _family;
     };
 
     class Solution
@@ -21,21 +21,21 @@ namespace prob4
     public:
         auto process(const Input& d)
         {
-            std::uint32_t totalValue = 0;
+            unsigned long totalValue = 0;
             auto itemsCount = d._items.size();
             for (auto personCapacity : d._family)
             {                
-                std::vector<std::vector<std::uint32_t>> m(
+                std::vector<std::vector<unsigned long>> m(
                     itemsCount,
-                    std::vector<std::uint32_t>(
-                        personCapacity+(std::uint32_t)1U, 
+                    std::vector<unsigned long>(
+                        personCapacity+(unsigned long)1U, 
                         0));
 
-                for (std::uint32_t i = 0; 
+                for (unsigned long i = 0; 
                      i < itemsCount;
                      ++i)
                 {
-                    for (std::uint32_t w = 1;
+                    for (unsigned long w = 1;
                          w <= personCapacity; 
                          ++w)
                     {                                                   
@@ -75,14 +75,14 @@ namespace prob4
             std::string line;            
             std::getline(in, line);
             auto N = toUint(line);           
-            std::uint32_t count = 0;
+            unsigned long count = 0;
             while (count < N)
             {
                 Input data;
                 {
                     std::getline(in, line);
                     auto itemsNum = toUint(line);
-                    for (std::uint32_t i = 0; i < itemsNum; ++i)
+                    for (unsigned long i = 0; i < itemsNum; ++i)
                     {
                         std::getline(in, line);
                         std::vector<std::string> itemStr;
@@ -101,7 +101,7 @@ namespace prob4
 
                     std::getline(in, line);
                     auto personNum = toUint(line);
-                    for (std::uint32_t i = 0; i < personNum; ++i)
+                    for (unsigned long i = 0; i < personNum; ++i)
                     {
                         std::getline(in, line);
                         data._family.emplace_back(toUint(line));                        

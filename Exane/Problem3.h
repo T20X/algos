@@ -8,7 +8,7 @@ namespace prob3
 {
     struct Input
     {
-         std::uint32_t days;
+         unsigned long days;
     };
 
     class Solution
@@ -16,18 +16,18 @@ namespace prob3
     public:
         struct PayRecord
         {
-            std::uint32_t dailyRate;
-            std::uint32_t totalGold;
+            unsigned long dailyRate;
+            unsigned long totalGold;
         };
 
-        std::uint32_t _maxDays;
-        std::map<std::uint32_t, PayRecord> _payMap;
-        explicit Solution(std::uint32_t maxDays)
+        unsigned long _maxDays;
+        std::map<unsigned long, PayRecord> _payMap;
+        explicit Solution(unsigned long maxDays)
             :_maxDays(maxDays)
         {
-            std::uint32_t days = 0;            
-            std::uint32_t money = 0;            
-            std::uint32_t step = 1;
+            unsigned long days = 0;            
+            unsigned long money = 0;            
+            unsigned long step = 1;
 
             while (days < _maxDays)
             {
@@ -60,7 +60,7 @@ namespace prob3
         template <class InputStream, class OutputStream>
             void go(InputStream& in,
                     OutputStream& out, 
-                    std::uint32_t maxDays)
+                    unsigned long maxDays)
         {
             Solution s(maxDays);
             std::string line;
@@ -78,7 +78,7 @@ namespace prob3
 
     namespace test
     {
-        template<std::uint32_t MaxDays>
+        template<unsigned long MaxDays>
         static void go()
         {
             {

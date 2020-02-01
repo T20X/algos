@@ -13,14 +13,13 @@ int main(int argc, char* argv[])
         {
             std::cout << "\n Usage: app <mode> "
                       << "\n <mode> can be unittest, prob1, prob2, prob3, prob4 "
-                      << "\n For example: unittest prob1 will execute prob1"
-                      << "\n as specified in the requirnments";
+                      << "\n For example: unittest prob1 will execute prob1";
         }
 
         std::map<std::string, std::function<void()>> commands {
             { "unittest",
                []() {
-                  prob1::test::go<10,10000>();                    
+                  prob1::test::go<1000,10000>();                    
                   prob2::test::go();
                   prob3::test::go<10000>();
                   prob4::test::go();    
