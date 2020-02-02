@@ -31,16 +31,12 @@ namespace prob2
                 IntegralPairHash>
                 _points;
 
-            for (const auto& point : d._coordinates)
-            {
-                for (const auto& pointAbove : d._coordinates)
-                {
+            for (const auto& point : d._coordinates)            
+                for (const auto& pointAbove : d._coordinates)                
                     if (point.x == pointAbove.x && pointAbove.y > point.y)                    
                         _points[std::make_pair(point.y, pointAbove.y)]
                           .emplace_back(point.x);
-                }
-            }
-
+                
             int result = 0;
             for (auto& record : _points)
             {

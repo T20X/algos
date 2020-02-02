@@ -8,8 +8,8 @@ namespace prob4
     {
         struct Item
         {
-            unsigned long price;
-            unsigned long weight;
+            unsigned long price;
+            unsigned long weight;
         };
 
         std::vector<Item> _items;
@@ -21,23 +21,18 @@ namespace prob4
     public:
         auto process(const Input& d)
         {
-            unsigned long totalValue = 0;
+            unsigned long totalValue = 0;
             auto itemsCount = d._items.size();
             for (auto personCapacity : d._family)
             {                
-                std::vector<std::vector<unsigned long>> m(
-                    itemsCount,
-                    std::vector<unsigned long>(
-                        personCapacity+(unsigned long)1U, 
+                std::vector<std::vector<unsigned long>> m(
+                    itemsCount, std::vector<unsigned long>(
+                        personCapacity+(unsigned long)1U, 
                         0));
 
-                for (unsigned long i = 0; 
-                     i < itemsCount;
-                     ++i)
+                for (unsigned long i = 0; i < itemsCount; ++i)
                 {
-                    for (unsigned long w = 1;
-                         w <= personCapacity; 
-                         ++w)
+                    for (unsigned long w = 1; w <= personCapacity; ++w)
                     {                                                   
                         auto itemWeight = d._items[i].weight;
                         auto itemPrice = d._items[i].price;

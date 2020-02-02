@@ -16,18 +16,18 @@ namespace prob3
     public:
         struct PayRecord
         {
-            unsigned long dailyRate;
-            unsigned long totalGold;
+            unsigned long dailyRate;
+            unsigned long totalGold;
         };
 
-        unsigned long _maxDays;
+        unsigned long _maxDays;
         std::map<unsigned long, PayRecord> _payMap;
-        explicit Solution(unsigned long maxDays)
+        explicit Solution(unsigned long maxDays)
             :_maxDays(maxDays)
         {
-            unsigned long days = 0;            
-            unsigned long money = 0;            
-            unsigned long step = 1;
+            unsigned long days = 0;            
+            unsigned long money = 0;           
+            unsigned long step = 1;
 
             while (days < _maxDays)
             {
