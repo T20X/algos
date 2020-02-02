@@ -4,7 +4,7 @@
 #include <cstdint>
 #include <map>
 #include <list>
-#include <unordered_map>
+#include <unordered_set>
 #include <vector>
 
 namespace prob2
@@ -15,9 +15,27 @@ namespace prob2
         {
             int x;
             int y;
+
+            bool operator==(const Coordinate& l) const
+            {
+                return l.x == x && l.y == y;
+            }
         };
 
-        std::vector<Coordinate> _coordinates;
+        struct Hash
+        {            
+            size_t operator()(const Coordinate& c) const
+            {
+                return (c.x * 0x1f1f1f1f) ^ c.y;
+            }
+        };
+
+        bool contains(const Coordinate& c) const
+        {
+            return _coordinates.find(c) != std::end(_coordinates);
+        }
+
+        std::unordered_set<Coordinate,Hash> _coordinates;
     };
 
     class Solution
@@ -25,45 +43,29 @@ namespace prob2
     public:
         auto process(const Input& d)
         {
-            std::unordered_map<
-                std::pair<int, int>, 
-                std::vector<int>,
-                IntegralPairHash>
-                _points;
-
-            for (const auto& point : d._coordinates)            
-                for (const auto& pointAbove : d._coordinates)                
-                    if (point.x == pointAbove.x && pointAbove.y > point.y)                    
-                        _points[std::make_pair(point.y, pointAbove.y)]
-                          .emplace_back(point.x);
-                
             int result = 0;
-            for (auto& record : _points)
-            {
-                auto y = record.first.first;
-                auto yAbove = record.first.second;
-                auto target = yAbove - y;
-
-                sort(std::begin(record.second), 
-                     std::end(record.second));
-
-                size_t l = 0, r = 0;                
-                while (r < record.second.size())
-                {
-                    auto diff = record.second[r] -
-                                record.second[l];
-                    if (diff == target)
+            for (const auto& point : d._coordinates)
+                for (const auto& pointAbove : d._coordinates)               
+                    if (pointAbove.y > point.y)
                     {
-                        ++result;
-                        ++l;
-                        ++r;
+                        if (point.x - pointAbove.x == pointAbove.y - point.y)
+                        {
+                            if (d.contains({ point.x, pointAbove.y }) &&
+                                d.contains({ pointAbove.x, point.y }))                               
+                                 ++result;
+                        }
+                        else if (point.x == pointAbove.x) //diagonal case!
+                        {
+                            auto halfSide = (pointAbove.y - point.y) / 2;
+                            if (halfSide > 0)
+                            {
+                                if (d.contains({ point.x + halfSide, pointAbove.y - halfSide }) &&
+                                    d.contains({ point.x - halfSide, pointAbove.y - halfSide }))                                   
+                                      ++result;
+                            }
+                        }
+
                     }
-                    else if (diff < target)
-                        ++r;
-                    else
-                        ++l;
-                }
-            }
 
             return result;
         }
@@ -96,9 +98,10 @@ namespace prob2
                                     "item must be represented as x and"
                                     "y separated by space");
 
-                            data._coordinates.emplace_back(
-                                Input::Coordinate{ toInt(itemStr[0]),
-                                                   toInt(itemStr[1]) });
+                            data._coordinates.emplace(Input::Coordinate {
+                                toInt(itemStr[0]),
+                                toInt(itemStr[1]) }
+                            );
                         }
                     }
                 }
@@ -119,7 +122,7 @@ namespace prob2
                 assert(1 == s.process(d));
 
                 d._coordinates = { {0,0},{1,0},{2,0},{0,2},{1,2},{2,2},{0,1},{1,1},{2,1} };
-                assert(5 == s.process(d));
+                assert(6 == s.process(d));
 
                 d._coordinates = { {0,0}, {0,0 } };
                 assert(0 == s.process(d));
