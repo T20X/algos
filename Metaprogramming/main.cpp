@@ -13,6 +13,7 @@ using namespace std;
 #include "functional.h"
 #include "typelist.h"
 #include "strategy.h"
+#include "SuperState.h"
 
 int main()
 {
@@ -25,6 +26,7 @@ int main()
     concepts::test();
     typelist::test();
     strategy::test();
+    superstate::test();
     //func::FilterByName();
     getchar();
     return 0;

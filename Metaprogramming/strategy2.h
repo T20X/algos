@@ -5,30 +5,11 @@
 #include <list>
 #include <array>
 #include <functional>
-#include "../common/basics.h"
 
 namespace strategy
 {
     template <class T>
     struct just_type { using type = T; };
-
-    template<class A, template<class...> class B> struct mp_rename_impl;
-
-    template<template<class...> class A, class... T, template<class...> class B>
-    struct mp_rename_impl<A<T...>, B>
-    {
-        using type = B<T...>;
-    };
-
-    template<class A, template<class...> class B>
-    using mp_rename = typename mp_rename_impl<A, B>::type;
-
-    mp_rename<std::pair<int, float>, std::tuple> t1;
-
-   /* template <template <class...> class T1,
-              template <class...> class T, 
-              class... D>
-    struct just_type<T1<D...>, T> {  };*/
 
     template <class... T>
     struct type_pack {};
@@ -86,18 +67,6 @@ namespace strategy
         int a[] = {(std::forward<F>(f)(just_type<T>{}), 0)...};
     }
 
-    template <class M>
-    struct Action
-    {
-        M& m_;
-        Action(M& m) :m_(m) { std::cout << "\n m is set"; }
-        M& m() { return m_; }
-        void complete(M& m)
-        {
-        }
-    };
-
-
 
     struct Event
     {
@@ -109,48 +78,10 @@ namespace strategy
 
     struct OrderAck : OrderEvent
     {
-        
     };
 
     struct OrderRej : OrderEvent
     {
-    };
-
-    template <class M>
-    struct ActionOrder : public Action<M>
-    {
-        using Action<M>::Action;        
-        void doIt()
-        {
-            this->m().doIt();
-        }
-
-        void onEvent(const OrderAck& e)
-        {
-            std::cout << "\n ActionOrder::onEvent";
-        }
-
-        void onEvent(const OrderRej& e)
-        {
-            std::cout << "\n ActionOrder::onEvent(OrderRej)";
-        }
-    };
-
-    template <class M>
-    struct ActionOrder2 : public ActionOrder<M>
-    {
-        using ActionOrder<M>::ActionOrder;
-        using ActionOrder<M>::onEvent;
-
-        void doIt()
-        {
-            this->m().doIt();
-        }
-
-        void onEvent(const OrderAck& e)
-        {
-            std::cout << "\n ActionOrder2::onEvent";
-        }
     };
 
     using events = type_pack<OrderAck, OrderRej>;
@@ -164,44 +95,66 @@ namespace strategy
 
     template <class E>
     struct BaseHandle : EventHandle {
-        virtual void process(const E& e) = 0;      
+        virtual void onEvent(const E& e) = 0;
     };
 
-    void handle(const OrderAck& e,
-        typename ActionOrder<class Mediator>& a)
+   // template <class A, class E>
+    //using Processor = std::function<void(const E & event, A & action)>;
+
+
+
+    struct Op
     {
-        std::cout << "\n handled OrderAck event for ActionOrder";
-        a.doIt();
-    }
+        long id;
+    };
 
-    void handle(const OrderRej& e,
-        typename ActionOrder<class Mediator>& a)
+
+    template <class M, class... E >
+    struct Action : BaseHandle<E>...
     {
-        std::cout << "\n handled OrderRej event for ActionOrder";
-        //a.doIt();
-    }
-
-
-    template <class A, class E>
-    using Processor = std::function<void(const E & event, A & action)>;
-
-
-    template <class E, class A>
-    struct EventActionHandle : BaseHandle<E>
-    {
-        using Event = E;
-        using Action = A;
-
-        Action* a_;
-        Processor<A, E> p_;       
-        EventActionHandle(Action* a, Processor<A,E>&& p)
-          :a_(a),p_(std::move(p)) {}
-        Action& getAction() { return *a_; }
-
-        void process(const E& e) override
+        M& m_;
+        Action(M& m) :m_(m) { std::cout << "\n m is set"; }
+        M& m() { return m_; }
+        //Action& getAction() { return static_cast<Action&>(*this); }
+        void complete(M& m)
         {
-            getAction().onEvent(e);
-            p_(e, getAction());
+        }
+
+      /*  template <class E>
+        void process(const E& e)
+        {
+            onEvent(e);
+        }*/
+
+        template <class F>
+        void for_each_event(F f) {          
+            apply(type_pack<EventActionHandle<E, Action>::Event...>{}, f);
+        }
+
+        virtual void onEvent(const OrderAck& e) 
+        {
+            std::cout << "\n OrderAck from Action!";
+        }
+
+        virtual void onEvent(const OrderRej& e)
+        {
+            std::cout << "\n OrderRej from Action!";
+        }
+
+        std::vector<Op> _ops;
+    };
+
+    template <class M, class... E>
+    struct ActionOrder : public Action<M, E...>
+    {
+        using Action<M, E...>::Action;
+        void doIt()
+        {
+            this->m().doIt();
+        }
+        void onEvent(const OrderAck& e)
+        {
+            std::cout << "\n OrderAck from ActionOrder!";
         }
     };
 
@@ -231,7 +184,7 @@ namespace strategy
     inline BaseExpectation::~BaseExpectation() {}
 
 
-    template <class A, class... E>
+   /* template <class A, class... E>
     struct Expectation : public BaseExpectation, A, EventActionHandle<E, A>...
     {
         //template <class S>
@@ -245,7 +198,7 @@ namespace strategy
             //auto seq = std::make_index_sequence<sizeof...(E)>;
             apply(type_pack<EventActionHandle<E, A>::Event...>{}, f);
         }
-    };
+    };*/
 
     struct EventTable
     {
@@ -259,7 +212,7 @@ namespace strategy
                 auto ptr = it->lock();
                 if (ptr)
                 {
-                    static_cast<BaseHandle<Event>&>(*ptr).process(e);
+                    static_cast<BaseHandle<Event>&>(*ptr).onEvent(e);
                     ++it;
                 }
                 else
@@ -285,16 +238,17 @@ namespace strategy
     };
 
     template <class E,class A, typename = std::enable_if_t<std::is_base_of<OrderEvent,E>::value>>
-    void mapThis(E&&, A&&,int)
+    auto mapThis(E&&, A&&,int)
     {
-        auto r = mapS(just_type<E>{});
-        std::cout << "\n mapthis=" << r;
+        std::cout << "\n mapthis=";
+        return mapS(just_type<E>{});
     }
 
     template <class E, class A>
-    void mapThis(E&&, A&&, ...)
+    auto mapThis(E&&, A&&, ...)
     {
         static_assert(typename E, "sadf");
+        return {};
         //auto r = mapS(just_type<E>{});
         //std::cout << "\n mapthis=" << r;
     }
@@ -342,30 +296,30 @@ namespace strategy
         {
             //mapS(just_type<OrderAck>{});
             //mapS(just_type<OrderRej>{});
-            ActionOrder2<Mediator> a(*this);
-            mapThis(OrderAck{}, a,0);
+            auto a = std::make_shared<ActionOrder<Mediator, OrderAck, OrderRej>>(*this);
+            mapThis(OrderAck{}, *a,0);
             //mapThis(Event{}, a);
-            a.doIt();
+            a->doIt();
 
             {
-                std::list< std::shared_ptr<BaseExpectation>> exps;
+               // std::list< std::shared_ptr<BaseExpectation>> exps;
 
                 {
-                    auto ptr = std::make_shared<Expectation<ActionOrder2<Mediator>, OrderAck, OrderRej>>(
-                        std::move(a), [&](const OrderAck& e, ActionOrder2<Mediator>&) -> void { std::cout << "\n OrderAck processed"; },
-                                      [&](const OrderRej& e, ActionOrder2<Mediator>&) -> void { std::cout << "\n OrderRej processed"; });
-                    exps.emplace_back(ptr);
-                    ptr->m().doIt();
-                    ptr->m().doIt();
-                    ptr->m().doIt();
-                    ptr->m().doIt();
-                    ptr->m().doIt();
-                    ptr->m().doIt();
-                    ptr->m().doIt();
-                    ptr->m().doIt();
+                   // auto ptr = std::make_shared<Expectation<ActionOrder<Mediator>, OrderAck, OrderRej>>(
+                     //   std::move(a), [&](const OrderAck& e, ActionOrder<Mediator>&) -> void { std::cout << "\n OrderAck processed"; },
+                       //               [&](const OrderRej& e, ActionOrder<Mediator>&) -> void { std::cout << "\n OrderRej processed"; });
+                   // exps.emplace_back(a);
+                    a->m().doIt();
+                    a->m().doIt();
+                    a->m().doIt();
+                    a->m().doIt();
+                    a->m().doIt();
+                    a->m().doIt();
+                    a->m().doIt();
+                    a->m().doIt();
 
                     //t_._table.for_ea
-                    ptr->for_each_event([&p=ptr, this](auto jt) {
+                    a->for_each_event([&p=a, this](auto jt) {
                         t_._table[find_same_idx(events{}, jt)].emplace_back(
                             std::weak_ptr<BaseHandle<decltype(jt)::type>>(p));
                         });
@@ -387,30 +341,13 @@ namespace strategy
         }
     };
 
-    
-    struct Test
-    {
-        template <class T>
-        void  f()
-        {
-        }
-    };
-
     static void test()
     {
-        Test t1;
-        t1.f<int>();
         Mediator m;
         m.work();
 
-        basics::Out o(1, 2, list{ 1,1 });
-        std::cout << o;
-
     }
-
-
 }
-
 
 
 /*template <class I, class T>

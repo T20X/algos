@@ -134,6 +134,7 @@ namespace basics
         cout << "bidirectional iterator reverse 5 " << endl;
     }*/
 
+  
 
     template <typename...>
     using void_t = void;
@@ -289,6 +290,11 @@ namespace basics
         basics::print(s1._x, s1._y);
     }
 
+    template <class F, class Ret = std::result_of_t<F(int)>>
+    void apply(F&& f) {
+        std::cout << "\n apply type=" << typeName<F>();
+    }
+
     void test()
     {
         showme();
@@ -315,7 +321,8 @@ namespace basics
 		bool isIterable = is_iterable<int>::value;
         //func(1, 2, 3);
         func(1, 2, "hello!");
-        
-
+        struct F1 { bool operator()() {} };
+        //apply(F1{});
+        apply([](int v) {});
     }
 }

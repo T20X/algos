@@ -8,6 +8,7 @@ using namespace std;
 #include "move_test.h"
 #include "nums.h"
 #include "conversion.h"
+#include "inittest.h"
 
 int main()
 {
@@ -21,5 +22,6 @@ int main()
     movetest::test();
     nums::test();
     conv::test();
+    init::test();
     getchar();
 }

@@ -33,6 +33,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Synthace", "Synthace\Syntha
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Patterns", "Patterns\Patterns.vcxproj", "{CCAF565A-6063-4D68-8717-816BB3DC8B6D}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Exane", "Exane\Exane.vcxproj", "{DC60E95A-9280-408C-BE6B-D96FFC2F01E9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -137,6 +139,14 @@ Global
 		{CCAF565A-6063-4D68-8717-816BB3DC8B6D}.Release|x64.Build.0 = Release|x64
 		{CCAF565A-6063-4D68-8717-816BB3DC8B6D}.Release|x86.ActiveCfg = Release|Win32
 		{CCAF565A-6063-4D68-8717-816BB3DC8B6D}.Release|x86.Build.0 = Release|Win32
+		{DC60E95A-9280-408C-BE6B-D96FFC2F01E9}.Debug|x64.ActiveCfg = Debug|x64
+		{DC60E95A-9280-408C-BE6B-D96FFC2F01E9}.Debug|x64.Build.0 = Debug|x64
+		{DC60E95A-9280-408C-BE6B-D96FFC2F01E9}.Debug|x86.ActiveCfg = Debug|Win32
+		{DC60E95A-9280-408C-BE6B-D96FFC2F01E9}.Debug|x86.Build.0 = Debug|Win32
+		{DC60E95A-9280-408C-BE6B-D96FFC2F01E9}.Release|x64.ActiveCfg = Release|x64
+		{DC60E95A-9280-408C-BE6B-D96FFC2F01E9}.Release|x64.Build.0 = Release|x64
+		{DC60E95A-9280-408C-BE6B-D96FFC2F01E9}.Release|x86.ActiveCfg = Release|Win32
+		{DC60E95A-9280-408C-BE6B-D96FFC2F01E9}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

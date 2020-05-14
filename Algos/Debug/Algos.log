@@ -1,7 +1,0 @@
-﻿  main.cpp
-c:\users\garkus\algos\algos\greedy2.h(113): warning C4018: '<': signed/unsigned mismatch
-c:\users\garkus\algos\algos\dynamicprogramminglearn.h(19): warning C4018: '>': signed/unsigned mismatch
-c:\users\garkus\algos\algos\dynamicprogramminglearn.h(33): warning C4018: '<': signed/unsigned mismatch
-c:\users\garkus\algos\algos\dynamicprogramminglearn.h(66): warning C4018: '<': signed/unsigned mismatch
-  Algos.vcxproj -> C:\Users\garkus\Algos\Debug\Algos.exe
-  Algos.vcxproj -> C:\Users\garkus\Algos\Debug\Algos.pdb (Partial PDB)

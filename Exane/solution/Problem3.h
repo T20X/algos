@@ -48,7 +48,9 @@ namespace prob3
             auto discount = daysToDiscount *
                  it->second.dailyRate;
 
-            return std::make_pair(data.days, it->second.totalGold - discount);
+            return std::make_pair(data.days,
+                it->second.totalGold - 
+                discount);
         }
     };
 
